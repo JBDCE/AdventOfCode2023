@@ -1,21 +1,17 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <vector>
 
-int main(void) {
+#include "Helpers.h"
 
-    // Open the file input file
-    std::fstream inputFile;
-    inputFile.open("Input.txt");
+int task1(std::vector<std::string> lines) {
+    size_t n_lines = lines.size();
+    int numbers[n_lines];
 
-    // Prepare variables to keep track of the lines in the file
-    const size_t N_LINES = 1000;
-    int numbers[N_LINES];
-    
-    std::string line;
-    // The first N_LINES from the file and write them to the list
-    for (size_t i=0; i<N_LINES; i++) {
-        std::getline(inputFile, line);
+    for (size_t i=0; i<n_lines; i++) {
+        // Search for the first instance of digits
+        std::string line = lines[i];
         size_t posFirst = line.find_first_of("123456789");
         size_t posLast = line.find_last_of("123456789");
 
@@ -24,17 +20,31 @@ int main(void) {
 
         // Then cast them to a number and write it to the output array
         numbers[i] = std::stoi(digits);
-
-        std::cout << line << " - " << digits << std::endl;
     }
 
     // Iterate over the lines and sum them up to get the result
     int result = 0;
-    for (size_t i=0; i<N_LINES; i++){
+    for (size_t i=0; i<n_lines; i++){
         result += numbers[i];
     }
+    return result;
+}
 
-    std::cout << "Final sum is: " << result;
+int task2(std::vector<std::string> lines) {
+    return 0;
+}
+
+
+int main(void) {
+    // Open input file using the helper
+    std::vector<std::string> lines = readFile("Input.txt");
+
+    // Calculate the tasks based on the input file
+    int result1 = task1(lines);
+    int result2 = task2(lines);
+
+    std::cout << "Task 1 Sum: " << result1 << std::endl;
+    std::cout << "Task 2 Sum: " << result2 << std::endl;
 
     return 0;
 }
