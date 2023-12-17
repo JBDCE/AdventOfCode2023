@@ -8,4 +8,6 @@
 // Function prototype
 std::vector<std::string> readFile(std::string filepath);
 
+std::string textToNumber(std::string inputString);
+
 #endif

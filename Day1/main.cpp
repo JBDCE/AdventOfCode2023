@@ -20,6 +20,8 @@ int task1(std::vector<std::string> lines) {
 
         // Then cast them to a number and write it to the output array
         numbers[i] = std::stoi(digits);
+
+        std::cout << i << ": " << line << " - " << digits << std::endl;
     }
 
     // Iterate over the lines and sum them up to get the result
@@ -31,7 +33,13 @@ int task1(std::vector<std::string> lines) {
 }
 
 int task2(std::vector<std::string> lines) {
-    return 0;
+
+    std::vector<std::string> convertedLines;
+    for (const std::string line : lines) {
+        convertedLines.push_back(textToNumber(line));
+    }
+
+    return task1(convertedLines);
 }
 
 
