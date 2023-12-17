@@ -17,3 +17,10 @@ TLDR:
  - Say yes to whatever it says
  - Add the bin directory to the windows path
  - Open a new terminal and type ```gcc --version``` to check for success
+
+### Captains log
+
+16.12. After setting things up getting the solution for task 1 of Day1 was a breeze. But task 2 gave me a lot of trouble. Im stuck having a too low result but the code is working on the shorter input. I must be missing something...
+
+17.12. Ah I made a mistake. I need to check the std::string.find() function is passed the cursor location to ensure that i get the last digits as well. Otherwise I only get the first digit right. I got the solution correctly now. LL: Set up file input as a comand line argument. Recompiling in C++ is a pain otherwise. Also maybe I should look into setting up a Makefile? Perhaps for some other day.
+
