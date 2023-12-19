@@ -1,0 +1,29 @@
+{
+    "tasks": [
+        {
+            "label": "make",
+            "type": "shell",
+            "command": "mingw32-make Day2",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "mingw32-make clean",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        }
+    ],
+    "version": "2.0.0"
+}

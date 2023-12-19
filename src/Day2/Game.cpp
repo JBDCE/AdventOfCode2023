@@ -32,6 +32,6 @@ Game::Game(string input_line)
     // Cut away the game text to make the regex for the next step easier
     line = line.substr(line.find(":") + 1); // +1 to also remove the space character
     // Seperate the games into a list
-    std::cout << line;
+    std::cout << line << std::endl;
 
 }
