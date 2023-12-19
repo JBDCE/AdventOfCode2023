@@ -2,38 +2,21 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall
 
-# Directories
-COMMONDIR = src/Helpers
-SRCDIRS = src/Day1 src/Day2
+
+SRCDIR = src
 INCDIR = include
 BINDIR = bin
 
-# Common source files and object files
-COMMON_SOURCES = $(wildcard $(COMMONDIR)/*.cpp)
-COMMON_OBJECTS = $(patsubst $(COMMONDIR)/%.cpp,$(BINDIR)/common_%.o,$(COMMON_SOURCES))
+all: Day1 Day2
 
-# Subproject source files and object files
-SOURCES = $(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.cpp))
-OBJECTS = $(patsubst %.cpp,$(BINDIR)/%.o,$(notdir $(SOURCES)))
+Day1:
+	$(info Building: $@)
+	$(CXX) $(CXXFLAGS) -I$(INCDIR)/Helpers/ -o $(BINDIR)/$@.exe $(wildcard $(SRCDIR)/$@/*.cpp) $(wildcard $(SRCDIR)/Helpers/*.cpp)
 
-# Executable names
-TARGETS = $(patsubst src/%/main%.cpp,%,$(SOURCES))
-
-# Main target
-all: $(addprefix $(BINDIR)/,$(TARGETS))
-
-# Linking for subprojects
-$(BINDIR)/%: $(BINDIR)/%.o $(filter %/main%.o,$(OBJECTS)) $(COMMON_OBJECTS)
-	$(CXX) $(CXXFLAGS) $^ -o $@
-
-# Compilation for subprojects
-$(BINDIR)/%.o: $(SRCDIR)/%.cpp $(INCDIR)/%.h
-	$(CXX) $(CXXFLAGS) -I$(INCDIR) -c $< -o $@
-
-# Compilation for common files
-$(BINDIR)/common_%.o: $(COMMONDIR)/%.cpp $(INCDIR)/common/%.h
-	$(CXX) $(CXXFLAGS) -I$(INCDIR) -c $< -o $@
+Day2:
+	$(info Building: $@)
+	$(CXX) $(CXXFLAGS) -I$(INCDIR)/Helpers/ -I$(INCDIR)/$@/ -o $(BINDIR)/$@.exe $(wildcard $(SRCDIR)/$@/*.cpp) $(wildcard $(SRCDIR)/Helpers/*.cpp)
 
 # Clean target
 clean:
-	rm -f $(BINDIR)/*.o $(addprefix $(BINDIR)/,$(TARGETS))
+	del $(subst /,\,$(wildcard $(BINDIR)/*.exe))
