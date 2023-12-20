@@ -5,23 +5,13 @@
 
 #include "Draw.h"
 
+#include "Game.h"
+
 using std::vector;
 using std::string;
 using std::regex;
 
-class Game
-{
-private:
-    size_t id_;
-    vector<Draw> draws;
-
-public:
-    Game(string input_line);
-    bool Game::is_valid(int maxRed, int maxGreen, int maxBlue);
-};
-
-Game::Game(string input_line)
-{
+Game::Game(string input_line) {
     string line = input_line;
     // Find the id of the game
     regex idPattern("\\d+(?=:)");
@@ -73,11 +63,30 @@ Game::Game(string input_line)
 
 }
 
-bool Game::is_valid(int maxRed, int maxGreen, int maxBlue) {
+bool Game::is_valid(int maxRed, int maxGreen, int maxBlue) const {
     for (Draw draw : this->draws) {
         if (draw.get_red() > maxRed) return false;
         if (draw.get_green() > maxGreen) return false;
         if (draw.get_blue() > maxBlue) return false;
     }
     return true;
+}
+
+int Game::get_id() const {
+    return this->id_;
+}
+
+Draw Game::get_mvp() const {
+
+    int maxRed = 0;
+    int maxBlue = 0;
+    int maxGreen = 0;
+
+    for (Draw draw : this->draws) {
+        if (draw.get_red() > maxRed) maxRed = draw.get_red();
+        if (draw.get_green() > maxGreen) maxGreen = draw.get_green();
+        if (draw.get_blue() > maxBlue) maxBlue = draw.get_blue();
+    }
+
+    return Draw(maxRed, maxGreen, maxBlue);
 }

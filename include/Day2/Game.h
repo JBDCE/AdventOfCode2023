@@ -9,11 +9,14 @@
 class Game
 {
 private:
-    size_t id_;
+    int id_;
     std::vector<Draw> draws;
 
 public:
     Game(std::string input_line);
+    bool is_valid(int maxRed, int maxGreen, int maxBlue) const;
+    int get_id() const;
+    Draw get_mvp() const;
 };
 
 #endif
