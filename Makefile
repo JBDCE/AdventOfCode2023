@@ -17,6 +17,10 @@ Day2:
 	$(info Building: $@)
 	$(CXX) $(CXXFLAGS) -I$(INCDIR)/Helpers/ -I$(INCDIR)/$@/ -o $(BINDIR)/$@.exe $(wildcard $(SRCDIR)/$@/*.cpp) $(wildcard $(SRCDIR)/Helpers/*.cpp)
 
+Day3:
+	$(info Building: $@)
+	$(CXX) $(CXXFLAGS) -I$(INCDIR)/Helpers/ -I$(INCDIR)/$@/ -o $(BINDIR)/$@.exe $(wildcard $(SRCDIR)/$@/*.cpp) $(wildcard $(SRCDIR)/Helpers/*.cpp)
+
 # Clean target
 clean:
 	del $(subst /,\,$(wildcard $(BINDIR)/*.exe))
